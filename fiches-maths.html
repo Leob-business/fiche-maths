@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches Révision — Maths Première Spé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:15px}
+body{font-family:'Outfit',sans-serif;background:#0e0e18;color:#ddddf0;display:flex;height:100vh;overflow:hidden}
+:root{
+  --sidebar-w:240px;
+  --orange:#f4a261;--teal:#56c9b0;--pink:#f06595;--gold:#f9c74f;--blue:#7ab3ff;--green:#82d173;
+  --bg-sidebar:#0a0a14;--bg-main:#13131e;--bg-card:#1c1c2c;--bg-card2:#222234;
+  --text-1:#e2e2f2;--text-2:#8888aa;--text-3:#4a4a6a;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);
+}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--text-3);border-radius:3px}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar-w);background:var(--bg-sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
+.sb-header{padding:18px 16px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sb-icon{font-size:22px;line-height:1}
+.sb-title{font-family:'Caveat',cursive;font-size:19px;font-weight:700;color:var(--orange);line-height:1.2}
+.sb-sub{font-size:10px;color:var(--text-3);letter-spacing:.05em;margin-top:2px}
+.sb-nav{flex:1;overflow-y:auto;padding:6px 0 16px;scrollbar-width:thin;scrollbar-color:var(--text-3) transparent}
+.nav-group{font-size:10px;letter-spacing:.12em;color:var(--text-3);font-weight:600;padding:14px 16px 5px;text-transform:uppercase}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 16px;cursor:pointer;border-left:3px solid transparent;transition:all .15s;font-size:12.5px;color:var(--text-2);line-height:1.3}
+.nav-item:hover{background:rgba(255,255,255,0.04);color:var(--text-1)}
+.nav-item.active{background:rgba(244,162,97,.09);border-left-color:var(--orange);color:var(--orange);font-weight:500}
+.nav-badge{font-family:'Outfit',sans-serif;font-size:10px;background:rgba(255,255,255,.06);border-radius:4px;padding:1px 5px;flex-shrink:0;font-weight:600}
+.nav-item.active .nav-badge{background:rgba(244,162,97,.18);color:var(--orange)}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;background:var(--bg-main);scrollbar-width:thin;scrollbar-color:var(--text-3) transparent}
+.content-wrap{max-width:820px;margin:0 auto;padding:0 40px 80px}
+
+/* WELCOME */
+.welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;height:75vh;text-align:center}
+.welcome-title{font-family:'Caveat',cursive;font-size:52px;font-weight:700;color:var(--text-1);margin-bottom:6px}
+.welcome-sub{font-size:14px;color:var(--text-2);margin-bottom:40px}
+.welcome-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:700px}
+.welcome-chip{background:var(--bg-card);border:1px solid var(--border2);border-radius:8px;padding:10px 8px;font-size:11.5px;color:var(--text-2);cursor:pointer;transition:all .15s;line-height:1.3;text-align:center}
+.welcome-chip:hover{border-color:var(--orange);color:var(--orange);background:rgba(244,162,97,.05)}
+
+/* TOP BAR */
+.top-bar{display:flex;align-items:flex-start;justify-content:space-between;padding:24px 0 20px;margin-bottom:24px;border-bottom:1px solid var(--border)}
+.chapter-meta{font-size:10px;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.chapter-title{font-family:'Caveat',cursive;font-size:38px;font-weight:700;color:var(--text-1);line-height:1.1}
+.chapter-subtitle{font-size:13px;color:var(--text-2);margin-top:4px}
+.print-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(255,255,255,.05);border:1px solid var(--border2);border-radius:7px;cursor:pointer;font-size:12px;color:var(--text-2);font-family:'Outfit',sans-serif;transition:all .15s;flex-shrink:0;margin-top:4px}
+.print-btn:hover{background:rgba(255,255,255,.09);color:var(--text-1)}
+
+/* IDÉE CLÉ */
+.idee-box{background:rgba(240,101,149,.07);border:1px solid rgba(240,101,149,.22);border-radius:10px;padding:15px 18px;margin-bottom:28px}
+.idee-label{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;color:var(--pink);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.idee-text{font-size:14px;line-height:1.75;color:var(--text-1)}
+.hl-p{background:rgba(240,101,149,.18);color:#f8a5c3;padding:1px 5px;border-radius:4px}
+.hl-t{background:rgba(86,201,176,.18);color:#7dd9c5;padding:1px 5px;border-radius:4px}
+.hl-b{background:rgba(122,179,255,.18);color:#9ec8ff;padding:1px 5px;border-radius:4px}
+.hl-o{background:rgba(244,162,97,.18);color:#f4be8a;padding:1px 5px;border-radius:4px}
+.hl-g{background:rgba(249,199,79,.18);color:#f9d77a;padding:1px 5px;border-radius:4px}
+
+/* SECTION HEADERS */
+.sec-header{font-family:'Caveat',cursive;font-size:23px;font-weight:600;display:flex;align-items:center;gap:8px;margin:28px 0 12px}
+.sec-header.teal{color:var(--teal)}
+.sec-header.gold{color:var(--gold)}
+
+/* PARTIES */
+.partie-block{margin-bottom:14px}
+.partie-title{font-family:'Caveat',cursive;font-size:17px;color:var(--orange);margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.partie-num{font-family:'Outfit',sans-serif;font-size:10px;background:rgba(244,162,97,.15);color:var(--orange);padding:2px 6px;border-radius:4px;font-weight:600}
+.partie-points{list-style:none;display:flex;flex-direction:column;gap:5px}
+.partie-point{font-size:13.5px;line-height:1.65;color:var(--text-1);display:flex;gap:9px;align-items:flex-start}
+.partie-point::before{content:'→';color:var(--text-3);flex-shrink:0;margin-top:2px;font-size:12px}
+
+/* FORMULES */
+.formule-item{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;background:var(--bg-card);border-radius:8px;margin-bottom:8px;border-left:3px solid var(--teal)}
+.formule-text{font-size:14px;font-weight:500;color:var(--text-1);flex:1}
+.formule-note{font-size:11.5px;color:var(--text-2);margin-top:3px}
+
+/* À RETENIR */
+.retenir-box{background:rgba(249,199,79,.05);border:1px solid rgba(249,199,79,.18);border-radius:10px;padding:13px 16px;margin-bottom:9px}
+.retenir-formula{font-family:'Caveat',cursive;font-size:18px;color:var(--gold);margin-bottom:4px}
+.retenir-note{font-size:12.5px;color:var(--text-2);display:flex;align-items:flex-start;gap:5px}
+.retenir-note::before{content:'✏';flex-shrink:0;font-size:11px}
+
+/* PRINT */
+@media print{
+  .sidebar,.print-btn{display:none}
+  body{background:white;color:#111;display:block;height:auto}
+  .main{overflow:visible;background:white}
+  .bg-card,.bg-card2{background:#f5f5f5}
+  .idee-box{border-color:#ccc;background:#fff0f5}
+  .retenir-box{border-color:#ccc;background:#fffdf0}
+  .formule-item{background:#f5f5f5}
+}
+@media(max-width:700px){
+  .sidebar{display:none}
+  .content-wrap{padding:0 18px 60px}
+  .welcome-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-header">
+    <div class="sb-icon">📐</div>
+    <div>
+      <div class="sb-title">Maths Première</div>
+      <div class="sb-sub">Spécialité · Bac blanc</div>
+    </div>
+  </div>
+  <nav class="sb-nav" id="sb-nav"></nav>
+</aside>
+
+<main class="main">
+  <div class="content-wrap" id="content-wrap">
+    <div class="welcome" id="welcome-screen">
+      <div class="welcome-title">Fiches de révision</div>
+      <div class="welcome-sub">Maths Première Spécialité — 10 chapitres complets</div>
+      <div class="welcome-grid" id="welcome-grid"></div>
+    </div>
+    <div id="chapter-view" style="display:none"></div>
+  </div>
+</main>
+
+<script>
+const GROUPS = [
+  { label: "ALGÈBRE", ids: [0, 3] },
+  { label: "ANALYSE", ids: [2, 4, 5, 6] },
+  { label: "PROBABILITÉS", ids: [1, 3] },
+  { label: "GÉOMÉTRIE", ids: [7, 8, 9] }
+];
+
+const NAV = [
+  { group: "ALGÈBRE", items: [0] },
+  { group: "PROBABILITÉS", items: [1, 3] },
+  { group: "ANALYSE", items: [2, 4, 5, 6] },
+  { group: "GÉOMÉTRIE", items: [7, 8, 9] }
+];
+
+const CHAPTERS = [
+{
+  id: 0, title: "Le second degré", sub: "Discriminant · Parabole · Factorisation",
+  group: "ALGÈBRE",
+  idee: "L'étude du trinôme repose entièrement sur le signe du [[p:discriminant Δ = b²−4ac]] qui détermine le [[t:nombre de racines]] et permet la factorisation. Toute résolution passe d'abord par ce calcul.",
+  parties: [
+    { num: "1", title: "Discriminant et racines", points: [
+      "Δ = b² − 4ac (à calculer en premier)",
+      "Δ > 0 → deux racines : x₁ = (−b − √Δ)/2a et x₂ = (−b + √Δ)/2a",
+      "Δ = 0 → une racine double : x₀ = −b/2a",
+      "Δ < 0 → aucune racine réelle, la parabole ne coupe pas l'axe des x"
+    ]},
+    { num: "2", title: "Forme canonique", points: [
+      "f(x) = a(x − α)² + β avec α = −b/2a et β = f(α) = −Δ/4a",
+      "S(α ; β) est le sommet de la parabole",
+      "Si a > 0 : minimum en α. Si a < 0 : maximum en α",
+      "Exemple : 2x²−8x+3 → α=2, β=−5 → f(x) = 2(x−2)²−5"
+    ]},
+    { num: "3", title: "Forme factorisée et signe", points: [
+      "Si Δ > 0 : f(x) = a(x − x₁)(x − x₂)",
+      "Même signe que a à l'extérieur de [x₁ ; x₂]",
+      "Signe opposé à a entre x₁ et x₂",
+      "Méthode inéquation : calculer Δ → factoriser → tableau de signes → lire la solution"
+    ]}
+  ],
+  formules: [
+    { f: "Δ = b² − 4ac", n: "Le discriminant — calcul en priorité absolue" },
+    { f: "x₁,₂ = (−b ± √Δ) / 2a", n: "Racines quand Δ > 0" },
+    { f: "α = −b/2a  et  β = f(α)", n: "Coordonnées du sommet S(α ; β)" },
+    { f: "f(x) = a(x − x₁)(x − x₂)", n: "Forme factorisée si Δ > 0" }
+  ],
+  retenir: [
+    { f: "« Si Δ < 0, pas de racine réelle »", n: "La parabole est entièrement au-dessus (a>0) ou en-dessous (a<0) de l'axe des x — ne jamais forcer une factorisation !" },
+    { f: "« Forme canonique = sommet direct »", n: "f(x) = a(x−2)²−5 → sommet S(2;−5) se lit immédiatement sans calcul supplémentaire" }
+  ]
+},
+{
+  id: 1, title: "Probabilités", sub: "Conditionnelles · Arbres · Indépendance",
+  group: "PROBABILITÉS",
+  idee: "Le calcul des probabilités complexes repose sur deux outils : [[t:la formule des probabilités totales]] pour partitionner l'univers, et [[p:la probabilité conditionnelle P(B|A)]] pour exploiter la dépendance entre événements.",
+  parties: [
+    { num: "1", title: "Rappels et probabilité conditionnelle", points: [
+      "P(Ā) = 1 − P(A)  et  P(A∪B) = P(A)+P(B)−P(A∩B)",
+      "P(B|A) = P(A∩B) / P(A)  avec P(A) ≠ 0",
+      "Donc : P(A∩B) = P(A) × P(B|A)",
+      "Méthode arbre : multiplier sur les branches, additionner les chemins"
+    ]},
+    { num: "2", title: "Indépendance", points: [
+      "A et B indépendants ⟺ P(A∩B) = P(A) × P(B)",
+      "Équivalent : P(B|A) = P(B)  (savoir A ne change pas la proba de B)",
+      "⚠ Incompatible ≠ Indépendant — ne pas confondre ces deux notions !",
+      "Si P(A)>0 et P(B)>0 : A∩B = ∅ implique dépendance"
+    ]},
+    { num: "3", title: "Formule des probabilités totales + Bayes", points: [
+      "Si {A, Ā} partition : P(B) = P(A)×P(B|A) + P(Ā)×P(B|Ā)",
+      "Bayes : P(A|B) = P(A)×P(B|A) / P(B)",
+      "Exemple : 60% M1 (2% défaut) + 40% M2 (5% défaut) → P(D) = 0,012+0,020 = 0,032",
+      "Bayes inverse le conditionnement : « sachant qu'il y a un défaut, vient-il de M1 ? »"
+    ]}
+  ],
+  formules: [
+    { f: "P(B|A) = P(A∩B) / P(A)", n: "Probabilité conditionnelle — formule clé" },
+    { f: "P(A∩B) = P(A) × P(B|A)", n: "Conséquence directe, très souvent utilisée" },
+    { f: "P(B) = P(A)×P(B|A) + P(Ā)×P(B|Ā)", n: "Formule des probabilités totales" },
+    { f: "P(A|B) = P(A)×P(B|A) / P(B)", n: "Formule de Bayes" }
+  ],
+  retenir: [
+    { f: "« Arbre = multiplication puis addition »", n: "Sur chaque nœud on multiplie les probabilités, et pour un événement final on additionne tous les chemins qui y mènent" },
+    { f: "« Indépendance ≠ Incompatibilité »", n: "Deux événements incompatibles (P(A∩B)=0) ne peuvent pas être indépendants si P(A)>0 et P(B)>0" }
+  ]
+},
+{
+  id: 2, title: "Dérivation", sub: "Nombre dérivé · Formules · Tangente",
+  group: "ANALYSE",
+  idee: "La dérivée [[p:f'(a)]] mesure le [[t:taux de variation instantané]] de f en a et donne le coefficient directeur de la tangente. Les formules de dérivation permettent de calculer f' sans passer par la limite.",
+  parties: [
+    { num: "1", title: "Définition et tangente", points: [
+      "f'(a) = lim[h→0] (f(a+h) − f(a)) / h",
+      "Équation de la tangente en a : y = f'(a)(x − a) + f(a)",
+      "f'(a) = pente de la tangente = taux de variation instantané"
+    ]},
+    { num: "2", title: "Formules usuelles", points: [
+      "(k)' = 0  |  (xⁿ)' = nxⁿ⁻¹  |  (√x)' = 1/(2√x)",
+      "(eˣ)' = eˣ  |  (1/x)' = −1/x²",
+      "(u+v)' = u'+v'  |  (ku)' = ku'",
+      "(uv)' = u'v + uv'  |  (u/v)' = (u'v − uv') / v²"
+    ]},
+    { num: "3", title: "Dérivée d'une composée", points: [
+      "(e^u)' = u' × e^u",
+      "(√u)' = u' / (2√u)",
+      "(u^n)' = n×u' × u^(n−1)",
+      "Exemple : (e^(3x²))' = 6x × e^(3x²)"
+    ]}
+  ],
+  formules: [
+    { f: "(uv)' = u'v + uv'", n: "Règle du produit — la plus utilisée en exercice" },
+    { f: "(u/v)' = (u'v − uv') / v²", n: "Règle du quotient" },
+    { f: "y = f'(a)(x − a) + f(a)", n: "Équation de la tangente au point d'abscisse a" },
+    { f: "(e^u)' = u' × e^u", n: "Composée avec l'exponentielle" }
+  ],
+  retenir: [
+    { f: "« u'v + uv' — le premier dérivé, l'autre non »", n: "Moyen mnémotechnique pour la règle du produit : dériver le premier terme, garder le second, puis garder le premier et dériver le second" },
+    { f: "« (eˣ)' = eˣ : seule fonction égale à sa dérivée »", n: "Propriété unique de l'exponentielle, conséquence directe de sa définition" }
+  ]
+},
+{
+  id: 3, title: "Variable aléatoire", sub: "Loi de probabilité · Espérance · Loi B(n,p)",
+  group: "PROBABILITÉS",
+  idee: "Une variable aléatoire [[p:X]] résume une expérience aléatoire par des valeurs numériques. [[t:L'espérance E(X) = np]] pour une loi binomiale représente la valeur moyenne attendue sur un grand nombre de répétitions.",
+  parties: [
+    { num: "1", title: "Variable aléatoire discrète", points: [
+      "X associe une valeur réelle à chaque issue de l'expérience",
+      "Loi de probabilité : tableau des xᵢ et P(X = xᵢ), avec Σpᵢ = 1",
+      "E(X) = Σ xᵢ × P(X = xᵢ)  (somme valeur × proba)",
+      "V(X) = E(X²) − [E(X)]²  et  σ(X) = √V(X)"
+    ]},
+    { num: "2", title: "Loi binomiale B(n, p)", points: [
+      "Conditions : n répétitions indépendantes, épreuve de Bernoulli (succès p)",
+      "X = nombre de succès → X ~ B(n, p)",
+      "P(X=k) = C(n,k) × pᵏ × (1−p)^(n−k)  avec C(n,k) = n! / (k!(n−k)!)",
+      "Exemple : dé lancé 4 fois, P(X=2) = C(4,2)×(1/6)²×(5/6)² ≈ 0,116"
+    ]},
+    { num: "3", title: "Espérance et variance de B(n,p)", points: [
+      "E(X) = np",
+      "V(X) = np(1−p)",
+      "σ(X) = √(np(1−p))",
+      "Ces formules s'appliquent UNIQUEMENT pour une loi binomiale B(n,p)"
+    ]}
+  ],
+  formules: [
+    { f: "E(X) = Σ xᵢ × pᵢ", n: "Espérance — valeur moyenne à long terme" },
+    { f: "V(X) = E(X²) − [E(X)]²", n: "Variance — mesure de la dispersion" },
+    { f: "P(X=k) = C(n,k) × pᵏ × (1−p)^(n−k)", n: "Loi binomiale B(n,p)" },
+    { f: "E(X) = np  et  V(X) = np(1−p)", n: "Formules directes pour B(n,p)" }
+  ],
+  retenir: [
+    { f: "« Bernoulli = 2 issues seulement »", n: "Pour utiliser B(n,p) : les répétitions doivent être indépendantes et chaque épreuve doit avoir exactement deux issues (succès/échec)" },
+    { f: "« C(n,k) = nombre de façons de choisir k parmi n »", n: "C(4,2) = 6 : il y a 6 façons de choisir 2 succès parmi 4 tirages" }
+  ]
+},
+{
+  id: 4, title: "Applications de la dérivation", sub: "Variations · Extremums · Tableau",
+  group: "ANALYSE",
+  idee: "Le signe de [[p:f'(x)]] détermine directement le [[t:sens de variation de f]] : positif → croissante, négatif → décroissante. Les zéros de f' avec changement de signe sont les extremums locaux.",
+  parties: [
+    { num: "1", title: "Sens de variation", points: [
+      "f'(x) > 0 sur I → f strictement croissante sur I",
+      "f'(x) < 0 sur I → f strictement décroissante sur I",
+      "f'(x) = 0 sur I → f constante sur I",
+      "Ces implications sont des équivalences si f est dérivable sur I"
+    ]},
+    { num: "2", title: "Extremums locaux", points: [
+      "Si f'(a) = 0 et f' change de signe en a → extremum local",
+      "f' passe de + à − en a → maximum local, f(a) est la valeur maximale",
+      "f' passe de − à + en a → minimum local, f(a) est la valeur minimale",
+      "⚠ Si f'(a) = 0 sans changement de signe → pas d'extremum (point d'inflexion)"
+    ]},
+    { num: "3", title: "Méthode — Tableau de variations", points: [
+      "1. Calculer f'(x) avec les formules de dérivation",
+      "2. Résoudre f'(x) = 0 pour trouver les valeurs critiques",
+      "3. Étudier le signe de f' sur chaque intervalle séparé par les racines",
+      "4. Dresser le tableau et noter les valeurs f(a) aux points critiques"
+    ]}
+  ],
+  formules: [
+    { f: "f'(x) > 0 sur I ⟺ f croissante sur I", n: "Lien fondamental dérivée–variation" },
+    { f: "y = f'(a)(x − a) + f(a)", n: "Tangente au point d'abscisse a" },
+    { f: "f'(a) = 0 + changement de signe → extremum", n: "Condition pour un extremum local" }
+  ],
+  retenir: [
+    { f: "« Extremum ≠ f'(a) = 0 seul »", n: "Il faut AUSSI un changement de signe de f'. Exemple : f(x)=x³ vérifie f'(0)=0 mais 0 n'est pas un extremum car f' ne change pas de signe" },
+    { f: "Exemple : f(x) = x³−3x sur ℝ", n: "f'(x)=3(x−1)(x+1) → max en x=−1 : f(−1)=2, min en x=1 : f(1)=−2" }
+  ]
+},
+{
+  id: 5, title: "Les suites numériques", sub: "Arithmétiques · Géométriques · Récurrence",
+  group: "ANALYSE",
+  idee: "Une suite est une [[p:succession ordonnée de réels]]. La distinction [[t:arithmétique (addition de r)]] versus [[o:géométrique (multiplication par q)]] détermine la formule du terme général et de la somme.",
+  parties: [
+    { num: "1", title: "Suites arithmétiques", points: [
+      "Définition : uₙ₊₁ = uₙ + r  (on ajoute toujours r)",
+      "Terme général : uₙ = u₀ + nr  (ou u₁ + (n−1)r)",
+      "Somme de u₀ à uₙ : S = nb×(u₀ + uₙ)/2 = nb×(premier + dernier)/2",
+      "Exemple : 2, 5, 8, 11… → r=3, u₁₀₀ = 2+99×3 = 299"
+    ]},
+    { num: "2", title: "Suites géométriques", points: [
+      "Définition : uₙ₊₁ = q × uₙ  (on multiplie toujours par q)",
+      "Terme général : uₙ = u₀ × qⁿ",
+      "Somme (q ≠ 1) : S = u₀ × (1 − qⁿ⁺¹) / (1 − q)",
+      "Comportement : |q|<1 → uₙ→0 ; q>1 → uₙ→+∞ ; q=1 → constante"
+    ]},
+    { num: "3", title: "Raisonnement par récurrence", points: [
+      "1. Initialisation : vérifier la propriété au rang 0 (ou 1)",
+      "2. Hérédité : supposer vraie au rang n, démontrer vraie au rang n+1",
+      "3. Conclusion : « La propriété est vraie pour tout n ∈ ℕ par récurrence »",
+      "⚠ Les 3 étapes sont obligatoires et doivent être toutes rédigées"
+    ]}
+  ],
+  formules: [
+    { f: "uₙ = u₀ + nr", n: "Terme général — suite arithmétique de raison r" },
+    { f: "uₙ = u₀ × qⁿ", n: "Terme général — suite géométrique de raison q" },
+    { f: "S = nb × (1er + dernier) / 2", n: "Somme d'une suite arithmétique" },
+    { f: "S = u₀ × (1 − qⁿ⁺¹) / (1 − q)", n: "Somme d'une suite géométrique (q ≠ 1)" }
+  ],
+  retenir: [
+    { f: "« Intérêts composés = suite géométrique »", n: "Un capital placé à taux t% par an : uₙ = u₀ × (1+t/100)ⁿ. Exemple : 1000€ à 3% pendant 5 ans = 1000 × 1,03⁵ ≈ 1159€" },
+    { f: "« Croissante ⟺ uₙ₊₁ − uₙ ≥ 0 »", n: "Pour étudier la monotonie : soustraire ou diviser selon le type (arith. : différence ≥ 0 ; géom. positive : ratio ≥ 1)" }
+  ]
+},
+{
+  id: 6, title: "La fonction exponentielle", sub: "Propriétés · Dérivée · Limites",
+  group: "ANALYSE",
+  idee: "La fonction exponentielle est l'[[p:unique fonction dérivable vérifiant f'=f et f(0)=1]]. Sa propriété fondamentale [[t:eˣ > 0 pour tout x]] en fait un outil clé pour les équations et inéquations.",
+  parties: [
+    { num: "1", title: "Définition et propriétés algébriques", points: [
+      "Définition : unique fonction avec f' = f et f(0) = 1",
+      "eᵃ × eᵇ = eᵃ⁺ᵇ  |  eᵃ / eᵇ = eᵃ⁻ᵇ  |  (eᵃ)ⁿ = eⁿᵃ",
+      "e⁰ = 1  |  e⁻ˣ = 1/eˣ  |  e¹ ≈ 2,718",
+      "⚠ eˣ > 0 pour TOUT x ∈ ℝ — ne s'annule jamais !"
+    ]},
+    { num: "2", title: "Dérivée et étude de fonctions", points: [
+      "(eˣ)' = eˣ  (dérivée = elle-même)",
+      "(e^u)' = u' × e^u",
+      "Pour factoriser e^u dans f'(x) : e^u > 0 donc le signe de f' est celui du reste",
+      "Exemple : f(x) = xe^(−x) → f'(x) = e^(−x)(1−x) → max en x=1"
+    ]},
+    { num: "3", title: "Limites et croissances comparées", points: [
+      "lim(x→+∞) eˣ = +∞  |  lim(x→−∞) eˣ = 0",
+      "Asymptote horizontale y = 0 en −∞",
+      "Croissances comparées : lim(x→+∞) xⁿ/eˣ = 0 (eˣ gagne sur tout polynôme)",
+      "Aussi : lim(x→−∞) xⁿ × eˣ = 0 (eˣ → 0 plus vite que xⁿ → ±∞)"
+    ]}
+  ],
+  formules: [
+    { f: "(eˣ)' = eˣ", n: "La seule fonction égale à sa propre dérivée" },
+    { f: "(e^u)' = u' × e^u", n: "Dérivée d'une composée avec exp" },
+    { f: "eᵃ × eᵇ = eᵃ⁺ᵇ", n: "Propriété algébrique fondamentale" },
+    { f: "lim(x→−∞) eˣ = 0", n: "Asymptote y=0 en −∞ — à citer dans les études" }
+  ],
+  retenir: [
+    { f: "« eˣ > 0 toujours → le signe vient du reste »", n: "Dans f'(x) = (3x−1)×e^(2x), le signe de f' est celui de (3x−1) puisque e^(2x) > 0 toujours" },
+    { f: "« eˣ gagne sur tout polynôme »", n: "Peu importe le degré de P(x), lim[+∞] P(x)/eˣ = 0. L'exponentielle croît infiniment plus vite que tout polynôme" }
+  ]
+},
+{
+  id: 7, title: "Le produit scalaire", sub: "Angle · Orthogonalité · Al-Kashi",
+  group: "GÉOMÉTRIE",
+  idee: "Le produit scalaire [[p:u⃗·v⃗]] est un outil puissant qui relie [[t:angles et longueurs]] dans le plan. L'orthogonalité se lit directement sur la nullité du produit scalaire, et Al-Kashi généralise Pythagore.",
+  parties: [
+    { num: "1", title: "Définition et calcul", points: [
+      "Avec l'angle : u⃗·v⃗ = ||u⃗|| × ||v⃗|| × cos(θ)",
+      "Par coordonnées : u⃗(x,y)·v⃗(x',y') = xx' + yy'",
+      "Norme : ||u⃗|| = √(x²+y²)  |  Distance AB = ||AB⃗||",
+      "Propriétés : bilinéarité, symétrie, u⃗·u⃗ = ||u⃗||²"
+    ]},
+    { num: "2", title: "Orthogonalité et applications", points: [
+      "u⃗ ⊥ v⃗ ⟺ u⃗·v⃗ = 0 ⟺ xx' + yy' = 0",
+      "Vecteur perp. à (a;b) : prendre n⃗ = (−b;a) ou (b;−a)",
+      "Exemple : perp. à (3;4) → (4;−3) car 3×4+4×(−3)=0 ✓",
+      "Cos de l'angle : cos(θ) = (u⃗·v⃗) / (||u⃗||×||v⃗||)"
+    ]},
+    { num: "3", title: "Formules importantes", points: [
+      "Al-Kashi : BC² = AB² + AC² − 2·AB·AC·cos(Â)",
+      "Si angle droit en A : cos(Â)=0 → BC²=AB²+AC² (Pythagore retrouvé)",
+      "Polarisation : AB⃗·AC⃗ = ½(AB²+AC²−BC²)",
+      "Distance A–B = √((xB−xA)²+(yB−yA)²)"
+    ]}
+  ],
+  formules: [
+    { f: "u⃗·v⃗ = ||u⃗||×||v⃗||×cos(θ)", n: "Définition avec l'angle" },
+    { f: "u⃗·v⃗ = xx' + yy'", n: "Calcul par coordonnées" },
+    { f: "u⃗ ⊥ v⃗ ⟺ u⃗·v⃗ = 0", n: "Condition d'orthogonalité" },
+    { f: "BC² = AB² + AC² − 2·AB·AC·cos(Â)", n: "Formule d'Al-Kashi" }
+  ],
+  retenir: [
+    { f: "« Al-Kashi = Pythagore généralisé »", n: "Al-Kashi s'applique à TOUT triangle. Angle droit → cos=0 → terme disparaît → on retrouve Pythagore" },
+    { f: "« Perp. à (a;b) : échanger et changer un signe »", n: "Le vecteur (−b;a) est toujours perpendiculaire à (a;b). Vérification : a×(−b)+b×a = 0 ✓" }
+  ]
+},
+{
+  id: 8, title: "Géométrie repérée", sub: "Droites · Distance · Cercles",
+  group: "GÉOMÉTRIE",
+  idee: "Dans le repère cartésien, toute droite s'écrit [[p:ax + by + c = 0]] où [[t:(a;b) est le vecteur normal]]. Cette équation permet de lire directement la perpendicularité, le parallélisme et de calculer des distances.",
+  parties: [
+    { num: "1", title: "Équation cartésienne d'une droite", points: [
+      "Forme générale : ax + by + c = 0  avec (a,b) ≠ (0,0)",
+      "Vecteur normal : n⃗(a ; b)  |  Vecteur directeur : d⃗(−b ; a)",
+      "Droite par A(x₀;y₀) de vecteur normal (a;b) : a(x−x₀)+b(y−y₀)=0",
+      "Deux droites parallèles ⟺ mêmes coefficients a et b (à un facteur près)"
+    ]},
+    { num: "2", title: "Distance et cercle", points: [
+      "Distance de M(x₀;y₀) à la droite ax+by+c=0 : d = |ax₀+by₀+c|/√(a²+b²)",
+      "Cercle de centre Ω(a;b) et rayon r : (x−a)²+(y−b)²=r²",
+      "Point sur le cercle ⟺ vérifie l'équation",
+      "Rayon = distance centre–point du cercle"
+    ]},
+    { num: "3", title: "Méthode — Équation d'une droite (AB)", points: [
+      "1. Calculer AB⃗(xB−xA ; yB−yA)",
+      "2. Prendre n⃗(yB−yA ; −(xB−xA)) comme vecteur normal",
+      "3. Écrire n⃗·AM⃗ = 0 et développer",
+      "4. Vérifier avec les coordonnées de B"
+    ]}
+  ],
+  formules: [
+    { f: "ax + by + c = 0", n: "Équation cartésienne générale d'une droite" },
+    { f: "n⃗(a ; b)  |  d⃗(−b ; a)", n: "Vecteur normal et vecteur directeur" },
+    { f: "d = |ax₀+by₀+c| / √(a²+b²)", n: "Distance d'un point à une droite" },
+    { f: "(x−a)² + (y−b)² = r²", n: "Équation d'un cercle de centre (a;b) et rayon r" }
+  ],
+  retenir: [
+    { f: "« Normal (a;b) = coefficients de l'équation »", n: "ax+by+c=0 → vecteur normal est directement (a;b). Si on cherche une droite perpendiculaire à (3;−2), son équation sera 3x−2y+c=0" },
+    { f: "« Distance = valeur absolue / racine »", n: "Penser à la valeur absolue au numérateur et √(a²+b²) au dénominateur — les deux oublis les plus fréquents" }
+  ]
+},
+{
+  id: 9, title: "Trigonométrie", sub: "Valeurs · Formules d'addition · Duplication",
+  group: "GÉOMÉTRIE",
+  idee: "La trigonométrie du premier cycle repose sur [[p:cos²x + sin²x = 1]] et les [[t:formules d'addition]] qui permettent de tout calculer sans calculatrice à partir des valeurs remarquables de 0, π/6, π/4, π/3, π/2.",
+  parties: [
+    { num: "1", title: "Identité fondamentale et valeurs", points: [
+      "cos²(x) + sin²(x) = 1  (identité fondamentale — toujours vraie)",
+      "0 → (1;0) | π/6 → (√3/2 ; 1/2) | π/4 → (√2/2 ; √2/2)",
+      "π/3 → (1/2 ; √3/2) | π/2 → (0;1)",
+      "Astuce sin : √0/2, √1/2, √2/2, √3/2, √4/2 pour 0,π/6,π/4,π/3,π/2"
+    ]},
+    { num: "2", title: "Formules d'addition", points: [
+      "cos(a+b) = cos(a)cos(b) − sin(a)sin(b)",
+      "cos(a−b) = cos(a)cos(b) + sin(a)sin(b)",
+      "sin(a+b) = sin(a)cos(b) + cos(a)sin(b)",
+      "sin(a−b) = sin(a)cos(b) − cos(a)sin(b)"
+    ]},
+    { num: "3", title: "Formules de duplication", points: [
+      "cos(2a) = cos²a − sin²a  =  2cos²a − 1  =  1 − 2sin²a",
+      "sin(2a) = 2sin(a)cos(a)",
+      "Exemple : cos(π/12) = cos(π/3−π/4) = (1/2)(√2/2)+(√3/2)(√2/2) = (√2+√6)/4",
+      "Utiliser les formules pour linéariser ou calculer des valeurs exactes"
+    ]}
+  ],
+  formules: [
+    { f: "cos²(x) + sin²(x) = 1", n: "Identité fondamentale — toujours disponible" },
+    { f: "cos(a+b) = cos(a)cos(b) − sin(a)sin(b)", n: "Formule d'addition cosinus" },
+    { f: "sin(a+b) = sin(a)cos(b) + cos(a)sin(b)", n: "Formule d'addition sinus" },
+    { f: "cos(2a) = 2cos²a − 1 = 1 − 2sin²a", n: "Deux formes utiles de la duplication" },
+    { f: "sin(2a) = 2sin(a)cos(a)", n: "Duplication sinus" }
+  ],
+  retenir: [
+    { f: "« Pour cos(a+b) : même-même-moins »", n: "cos×cos − sin×sin : les deux termes ont le même signe (cosinus×cosinus) et sont SOUSTRAITS. Pour sin(a+b) c'est l'inverse : deux termes croisés ADDITIONNÉS" },
+    { f: "Table des valeurs à mémoriser absolument", n: "Sans calculatrice : π/6→cos=√3/2,sin=1/2 | π/4→cos=sin=√2/2 | π/3→cos=1/2,sin=√3/2. Cosinus et sinus sont inversés entre π/6 et π/3 !" }
+  ]
+}
+];
+
+function hl(text) {
+  return text
+    .replace(/\[\[p:(.*?)\]\]/g, '<span class="hl-p">$1</span>')
+    .replace(/\[\[t:(.*?)\]\]/g, '<span class="hl-t">$1</span>')
+    .replace(/\[\[b:(.*?)\]\]/g, '<span class="hl-b">$1</span>')
+    .replace(/\[\[o:(.*?)\]\]/g, '<span class="hl-o">$1</span>')
+    .replace(/\[\[g:(.*?)\]\]/g, '<span class="hl-g">$1</span>');
+}
+
+function buildNav() {
+  const nav = document.getElementById('sb-nav');
+  nav.innerHTML = NAV.map(g =>
+    `<div class="nav-group">${g.label}</div>` +
+    g.items.map(i => {
+      const ch = CHAPTERS[i];
+      return `<div class="nav-item" id="nav-${i}" onclick="openChapter(${i})">
+        <span class="nav-badge">${i+1}</span>${ch.title}
+      </div>`;
+    }).join('')
+  ).join('');
+}
+
+function buildWelcome() {
+  document.getElementById('welcome-grid').innerHTML = CHAPTERS.map((ch, i) =>
+    `<div class="welcome-chip" onclick="openChapter(${i})">${ch.title}</div>`
+  ).join('');
+}
+
+function openChapter(idx) {
+  const ch = CHAPTERS[idx];
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + idx);
+  if (navEl) { navEl.classList.add('active'); navEl.scrollIntoView({ block: 'nearest' }); }
+  document.getElementById('welcome-screen').style.display = 'none';
+  const view = document.getElementById('chapter-view');
+  view.style.display = 'block';
+
+  const partiesHTML = ch.parties.map(p =>
+    `<div class="partie-block">
+      <div class="partie-title">
+        <span class="partie-num">Partie ${p.num}</span>${p.title}
+      </div>
+      <ul class="partie-points">
+        ${p.points.map(pt => `<li class="partie-point">${pt}</li>`).join('')}
+      </ul>
+    </div>`
+  ).join('');
+
+  const formulesHTML = ch.formules.map(f =>
+    `<div class="formule-item">
+      <div>
+        <div class="formule-text">${f.f}</div>
+        <div class="formule-note">${f.n}</div>
+      </div>
+    </div>`
+  ).join('');
+
+  const retenirHTML = ch.retenir.map(r =>
+    `<div class="retenir-box">
+      <div class="retenir-formula">${r.f}</div>
+      <div class="retenir-note">${r.n}</div>
+    </div>`
+  ).join('');
+
+  view.innerHTML = `
+    <div class="top-bar">
+      <div>
+        <div class="chapter-meta">Chapitre ${idx+1} · ${ch.group}</div>
+        <div class="chapter-title">${ch.title}</div>
+        <div class="chapter-subtitle">${ch.sub}</div>
+      </div>
+      <button class="print-btn" onclick="window.print()">🖨 Imprimer</button>
+    </div>
+
+    <div class="idee-box">
+      <div class="idee-label">🎯 Idée clé</div>
+      <div class="idee-text">${hl(ch.idee)}</div>
+    </div>
+
+    <div class="sec-header teal">📌 Cours</div>
+    ${partiesHTML}
+
+    <div class="sec-header teal">🔑 Formules clés</div>
+    ${formulesHTML}
+
+    <div class="sec-header gold">✏ À retenir absolument</div>
+    ${retenirHTML}
+  `;
+
+  document.querySelector('.main').scrollTop = 0;
+}
+
+buildNav();
+buildWelcome();
+</script>
+</body>
+</html>
